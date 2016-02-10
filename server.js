@@ -3,6 +3,7 @@ var port = process.env.PORT || 8080;
 var fs = require('fs');
 var stylesheet = fs.readFileSync('./style.css');
 var index = fs.readFileSync('./index.html');
+var qs = require('querystring');
 // var main = require("main.js");
 
 function handler(request, response){
@@ -16,13 +17,22 @@ function handler(request, response){
   else if(url.length === 1) {
     response.writeHead(200, {"Content-Type": "text/html"});
     response.end(index);
-  } else if (url.indexOf("/new_request") > -1) {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.end("<link rel='stylesheet' href='./style.css'><h2 class='result'>test success</h2>");
+  } else if (request.method === 'POST' && request.url === '/search') {
+    var body = '';
+    request.on('data', function(chunk) {
+      body += chunk;
+    });
+    request.on('end', function() {
+      var data = qs.parse(body);
+      console.log(data);
+      // now you can access `data.email` and `data.password`
+      response.writeHead(200);
+      response.end(JSON.stringify(data));
+    });
   } else {
+    response.writeHead(404);
     response.end();
   }
-  console.log(request);
 }
 
 http.createServer(handler).listen(port);
