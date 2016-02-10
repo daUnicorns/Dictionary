@@ -2,7 +2,7 @@
   "name": "da-dictionary",
   "version": "1.0.0",
   "description": "Building a game using the dictionary (words and definitions)",
-  "main": "main.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },
