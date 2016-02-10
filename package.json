@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/daUnicorns/Dictionary/issues"
   },
-  "homepage": "https://github.com/daUnicorns/Dictionary#readme"
+  "homepage": "https://github.com/daUnicorns/Dictionary#readme",
+  "dependencies": {
+    "querystring": "^0.2.0"
+  }
 }
