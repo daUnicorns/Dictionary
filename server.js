@@ -3,6 +3,7 @@ var port = process.env.PORT || 8080;
 var fs = require('fs');
 var stylesheet = fs.readFileSync('./style.css');
 var index = fs.readFileSync('./index.html');
+var words = fs.readFileSync('./words.txt');
 var qs = require('querystring');
 // var main = require("main.js");
 
@@ -29,7 +30,12 @@ function handler(request, response){
       response.writeHead(200);
       response.end(JSON.stringify(data));
     });
-  } else {
+  } else if(url === '/words.txt') {
+    response.writeHead(200);
+    console.log(words.toString());
+    response.end(words);
+  }
+else {
     response.writeHead(404);
     response.end();
   }

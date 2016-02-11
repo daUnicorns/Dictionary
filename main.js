@@ -1,16 +1,14 @@
 var fs = require('fs');
 var obj = {};
-
-function wordImporter (value) {
+//
+function wordImporter(value) {
   var allWords = __dirname + '/words.txt';
   var splitWords;
-  console.log(allWords);
-  fs.readFile(allWords, 'utf8', function (err, data) {
-    splitWords = data.split('\n');
-    return splitWords;
-  });
+  var data = fs.readFileSync('words.txt');
+  var superData = data.toString().split('\n');
 }
 
+console.log(wordImporter('rob'));
 // findWord = function (word, callback) {
 //   // who wants to volunteer to implement the method?
 //   var found = [];
